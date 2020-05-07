@@ -1,0 +1,22 @@
+vector<int> Solution::twoSum(const vector<int> &A, int x) {
+    vector<int> B;
+    
+    unordered_map<int,int> umap;
+    int i,j,k;
+    unordered_map<int, int>:: iterator itr;
+    for(i=0;i<A.size();i++){
+        
+        if(umap.find(x-A[i]) != umap.end())
+        {   B.resize(2);
+            itr=umap.find(x-A[i]);
+            B[0]=itr->second+1;
+            B[1]=i+1;
+            return B;
+        }
+        umap.insert(make_pair(A[i],i));
+    }
+    B.resize(0);
+    return B;
+    
+}
+
