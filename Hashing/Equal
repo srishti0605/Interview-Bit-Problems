@@ -1,0 +1,53 @@
+//Using hash maps
+
+vector<int> Solution::equal(vector<int> &A) {
+int i,j,k;
+
+vector<int>res;
+vector<vector<int>>ans;
+map<int,vector<int>> sum;
+for(i=0;i<A.size();i++){
+    for(j=i+1;j<A.size();j++){
+        //if(i==j)
+        //continue;
+        k=A[i]+A[j];
+        
+        
+        
+        if(sum.find(k)==sum.end()){
+          res.resize(2);
+            res[0]=i;
+            res[1]=j;
+            sum.insert(make_pair(k,res));
+            continue;
+        }
+            //sum[k].push_back(i);
+            //sum[k].push_back(j);
+            //continue;
+            //res[0]=i;
+        
+        else if(find(sum[k].begin(),sum[k].end(),i)==sum[k].end()&&
+        find(sum[k].begin(),sum[k].end(),j)==sum[k].end()){
+        //if(sum[k].size()>0){
+         res.resize(4);
+         res=sum[k];
+         res.push_back(i);
+         res.push_back(j);
+         
+         
+         //sort(res.begin(),res.end());
+         ans.push_back(res);
+        }
+         
+        
+    }
+}
+
+if(!ans.empty()){
+    sort(ans.begin(),ans.end());
+    return ans[0];
+}
+
+res.resize(0);
+    return res;
+}
